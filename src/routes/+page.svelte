@@ -1,5 +1,5 @@
 <script>
-    let minutes = 20;
+    let minutes = 12;
     let seconds = 30;
 
 </script>
@@ -10,13 +10,13 @@
         </div>
     </div>
     <div class="controls">
-
+        
     </div>
     
 </main>
 
 <style>
-    html, body{
+    body{
         padding: 0;
         margin: 0;
     }
@@ -25,7 +25,7 @@
         font-family: 'Roboto Mono', monospace;
         margin: 0;
         width: 100%;
-        height: 100%;
+        height: 100;
     }
     .clockDisplay{
         display:flex;
