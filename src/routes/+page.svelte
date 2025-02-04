@@ -1,13 +1,16 @@
 <script>
-    let hours = 0;
-    let minutes = 12;
-    let seconds = 30;
-    let centiseconds = 0;
+    let hour = 0;
+    let min1 = 0;
+    let min2 = 0;
+    let sec1 = 0;
+    let sec2 = 0;
+    let cs1 = 0;
+    let cs2 = 0;
 
     const now = Date();
 
     function stopwatch (){
-        let start = new Date();
+        const start = new Date();
 
         setInterval(updateElapsed, 10)
 
@@ -24,23 +27,28 @@
                 centiseconds = Math.floor((((total%(3.6 * 1000000))%60000)%1000)/10);
             }
         }
-    }
-
-    
+    }   
 </script>
+
 <main>
     <div class = "header">
         <div> {now} </div>
     </div>
     <div class="clockDisplay">
-        <div class="numbers">
-            {hours}:{minutes}:{seconds}.{centiseconds}
-        </div>
+        <div class="number">{hour}</div>
+        <div class="number">:</div>
+        <div class="number">{min1}</div>
+        <div class="number">{min2}</div>
+        <div class="number">:</div>
+        <div class="number">{sec1}</div>
+        <div class="number">{sec2}</div>
+        <div class="number">:</div>
+        <div class="number">{cs1}</div>
+        <div class="number">{cs2}</div>
     </div>
     <div class="controls">
-        <button on:click={stopwatch}>start</button>
-    </div>
-    
+        <button>start</button>
+    </div>    
 </main>
 
 <style>
@@ -56,8 +64,9 @@
         align-items: center;
         justify-content: center;
     }
-    .numbers{
-        font-size: 150px;
+    .number{
+        font-size: 400%;
         color: rgb(17, 13, 8);
+        width: 400%;
     }
 </style>
