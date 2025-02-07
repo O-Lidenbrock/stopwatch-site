@@ -1,3 +1,5 @@
+[![Deploy to GitHub Pages](https://github.com/O-Lidenbrock/stopwatch-site/actions/workflows/main.yml/badge.svg)](https://github.com/O-Lidenbrock/stopwatch-site/actions/workflows/main.yml)
+
 docs: https://svelte.dev/docs/kit
 
 # sv
