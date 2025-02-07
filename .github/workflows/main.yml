@@ -26,6 +26,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install SvelteKit and Vite
+        run: |
+          npm install -g @sveltejs/kit
+          npm install -g vite
+          chmod +x $(npm bin -g)/svelte-kit
+          chmod +x $(npm bin -g)/vite
+
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
