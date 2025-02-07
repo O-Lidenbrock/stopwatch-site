@@ -1,0 +1,1 @@
+export const prerender = true; //for some reason this only works in the +layout.js file, not the script tag in the page. idk.

@@ -1,54 +1,69 @@
 <script>
-    let hour = 0;
-    let min1 = 0;
-    let min2 = 0;
-    let sec1 = 0;
-    let sec2 = 0;
-    let cs1 = 0;
-    let cs2 = 0;
+    import { updated } from "$app/state";
 
-    const now = Date();
+    let milliseconds = $state(0);
+    let hours = $derived(Math.floor(milliseconds/(3.6 * 1000000)).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}));
+    let minutes = $derived(Math.floor((milliseconds%(3.6 * 1000000))/60000).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}));
+    let seconds = $derived(Math.floor(((milliseconds%(3.6 * 1000000))%60000)/1000).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}));
+    let centiseconds = $derived(Math.floor((((milliseconds%(3.6 * 1000000))%60000)%1000)/10).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}));
 
-    function stopwatch (){
-        const start = new Date();
+    const now = Date.now();
+    let paused = 0;
+    let timerID = null;
 
-        setInterval(updateElapsed, 10)
+    function stopwatch(startTime, ms){
+        milliseconds = ms;
+        let start = startTime;
 
-        function updateElapsed () {
-            const current = new Date();
-            let elapsed = current - start;
-            updateDisplay(elapsed);
-            
-            function updateDisplay (total) {
-                let remainder = total;
-                hours = Math.floor(total/(3.6 * 1000000)).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-                minutes = Math.floor((total%(3.6 * 1000000))/60000).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-                seconds = Math.floor(((total%(3.6 * 1000000))%60000)/1000).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-                centiseconds = Math.floor((((total%(3.6 * 1000000))%60000)%1000)/10);
-            }
+        timerID = setInterval(update, 100);
+
+        function update(){
+            milliseconds = Date.now() - startTime;
         }
-    }   
-</script>
+    }
 
+    function play(){
+        const start = Date.now();
+        let ms = paused;
+
+        if(!(timerID === null)){
+            clearInterval(timerID)
+        }
+
+            clearInterval(timerID);
+            stopwatch(start, ms);
+ 
+        
+    }
+
+    function pause(){
+        clearInterval(timerID);
+        paused = milliseconds;
+    }
+    
+    function stop(){
+        clearInterval(timerID);
+        milliseconds = 0;
+    }
+
+    
+</script>
 <main>
     <div class = "header">
         <div> {now} </div>
     </div>
     <div class="clockDisplay">
-        <div class="number">{hour}</div>
-        <div class="number">:</div>
-        <div class="number">{min1}</div>
-        <div class="number">{min2}</div>
-        <div class="number">:</div>
-        <div class="number">{sec1}</div>
-        <div class="number">{sec2}</div>
-        <div class="number">:</div>
-        <div class="number">{cs1}</div>
-        <div class="number">{cs2}</div>
+        <div class="numbers">
+            {hours}:{minutes}:{seconds}.{centiseconds}
+        </div>
     </div>
     <div class="controls">
-        <button>start</button>
-    </div>    
+        <button onclick={play}>play</button>
+        <button onclick={pause}>pause</button>
+        <button onclick={stop}>stop</button>
+    </div>
+    <div>"Hello there"</div>
+    
 </main>
 
 <style>
@@ -64,9 +79,10 @@
         align-items: center;
         justify-content: center;
     }
-    .number{
-        font-size: 400%;
+    .numbers{
+        font-size: 100px;
         color: rgb(17, 13, 8);
-        width: 400%;
+        width: 50px;
     }
 </style>
+
