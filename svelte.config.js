@@ -6,8 +6,8 @@ const config = {
 
     kit: {
         adapter: adapter({
-			pages: 'dev', //directory that the pages are written to
-			assets: 'dev', //where to write static assets (static/ contents + client side JS and CSS generated)
+			pages: 'docs', //directory that the pages are written to
+			assets: 'docs', //where to write static assets (static/ contents + client side JS and CSS generated)
 			fallback: undefined, //I think if things break it sends the user here (a 404.html or wtv page)
 			precompress: false, //precompresses with brotli and gzip
 			strict: true //checks if all pages were prerendered (in case some haven't been set right)
