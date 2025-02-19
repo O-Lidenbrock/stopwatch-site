@@ -1,0 +1,1 @@
+All icons are svgs in black from google fonts Icons. They're size 60

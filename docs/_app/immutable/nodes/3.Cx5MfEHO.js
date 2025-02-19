@@ -1,0 +1,1 @@
+import{a as t,t as p}from"../chunks/DMtUSPvF.js";import"../chunks/CGere__5.js";var e=p('<h1 class="svelte-66dqop">I THINK THIS IS AN ABOUT SECTION</h1>');function m(a){var o=e();t(a,o)}export{m as component};

@@ -1,1 +1,0 @@
-import{a as t,t as p}from"../chunks/2tZYoyhY.js";import"../chunks/DYzqPx99.js";var e=p('<h1 class="svelte-66dqop">I THINK THIS IS AN ABOUT SECTION</h1>');function m(a){var o=e();t(a,o)}export{m as component};
