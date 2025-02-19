@@ -34,8 +34,11 @@
             clearInterval(timerID)
         }
 
-            clearInterval(timerID);
-            stopwatch(start, ms);
+        clearInterval(timerID);
+        stopwatch(start, ms);
+
+        //in here you could use the svelte conditional #if condition.
+        //It conditionally renders divs, so perfect for a play/pause
  
         
     }
@@ -98,17 +101,17 @@
         </div>
     </div>
     <div class="controls">
-        <button class="controlBtn" onclick={play} aria-label="Play"> <!--- wrote this with ai bc I had no idea what was standard for this sorta thing --->
+        <button class="controlBtn" id="Play" onclick={play} aria-label="Play"> <!--- wrote this with ai bc I had no idea what was standard for this sorta thing --->
             <img src="icons/play-icon.svg" alt="Play">
         </button>
         <button class="controlBtn" onclick={pause} aria-label="Pause">
             <img src="icons/pause-icon.svg" alt="Pause">
         </button>
-        <button class="controlBtn" onclick={restart} aria-label="Stop">
-            <img src="icons/restart-icon.svg" alt="Stop">
+        <button class="controlBtn" onclick={restart} aria-label="Restart">
+            <img src="icons/restart-icon.svg" alt="Restart">
         </button>
         <button class="controlBtn" onclick={lap} aria-label="Lap">
-            <img src="icons/timer-icon.svg" alt="Lap">
+            <img src="icons/lap2-icon.svg" alt="Lap">
         </button>
        </div>
     <div>current ms: {milliseconds}</div>
