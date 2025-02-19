@@ -14,7 +14,7 @@
     let paused = $state(0);
     let timerID = null;
 
-    function stopwatch(startTime, ms){
+    const stopwatch = (startTime, ms) => {
         milliseconds = ms;
         let start = startTime;
 
@@ -25,7 +25,7 @@
         }
     }
 
-    function play(){
+    const play = () => {
         const start = Date.now();
         lapStart = Date.now();
         let ms = paused;
@@ -40,17 +40,22 @@
         
     }
 
-    function pause(){
+    const pause = () => {
         paused = milliseconds;
         clearInterval(timerID);
     }
     
-    function stop(){
+    const stop = () => {
         clearInterval(timerID);
         milliseconds = 0;
         paused = 0;
         const lapsDiv = document.querySelector(".laps");
         lapsDiv.innerHTML = ""; //clear the laps
+    }
+
+    const restart = () => {
+        stop();
+        play();
     }
 
     const lap = () => { //two options: i could either create lap objects and calculate the difference between each, or I could make what's basically a seperate stopwatch. I think that's what I'll do.
@@ -71,7 +76,7 @@
         time.textContent = timeStr;
 
         const container = document.querySelector(".laps");
-        container.appendChild(time);
+        container.appendChild(time); //figure out a way for this to be the first node always
 
     }
 
@@ -99,8 +104,8 @@
         <button class="controlBtn" onclick={pause} aria-label="Pause">
             <img src="icons/pause-icon.svg" alt="Pause">
         </button>
-        <button class="controlBtn" onclick={stop} aria-label="Stop">
-            <img src="icons/stop-icon.svg" alt="Stop">
+        <button class="controlBtn" onclick={restart} aria-label="Stop">
+            <img src="icons/restart-icon.svg" alt="Stop">
         </button>
         <button class="controlBtn" onclick={lap} aria-label="Lap">
             <img src="icons/timer-icon.svg" alt="Lap">
