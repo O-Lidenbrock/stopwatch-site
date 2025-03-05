@@ -15,6 +15,10 @@
     let timerID = null;
     let running = $state(false);
 
+
+
+    let docTitle = $derived(`${minutes}:${seconds}`)
+
     const stopwatch = (startTime, ms) => {
         milliseconds = ms;
         let start = startTime;
@@ -23,6 +27,7 @@
 
         function update(){
             milliseconds = Date.now() - startTime + paused;
+            document.title = docTitle;
         }
     }
 
